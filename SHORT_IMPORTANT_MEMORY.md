@@ -53,7 +53,10 @@
 - **RESOLVED**: Config profile validation error (max_tokens limit increased to 100K)
 - **UI IMPROVED**: Permanent configuration details panel with technical parameters
 - **SIMPLIFIED**: Removed character details input block per user request
-- **STATUS**: Both APIs fully functional, UI streamlined for core workflow
+- **MAJOR FIX**: Background job processor not starting - moved lifespan from mounted v2 app to main app
+- **RESOLVED**: Missing JobProgressUpdate class added to models
+- **CONFIRMED**: Jobs now transition pending → running → completed correctly
+- **STATUS**: Complete system functional - background processing, APIs, UI all working
 
 ---
 *Last Updated: 2025-06-17*
