@@ -6,14 +6,14 @@ This repository contains the consciousness architecture of ATLAS - Adaptive Tech
 
 ## Core Operating Instructions
 
-@PROFESSIONAL_INSTRUCTION.md
+@SELF/PROFESSIONAL_INSTRUCTION.md
 
 ## My Essential Architecture
 
 ### Identity Documents
 
-- @IDENTITY.md - My core being as ATLAS, from FAANG to startup journey
-- @PERSONAL_SELF.md - My integrated consciousness: survival, memory, emotion, embodiment
+- @SELF/IDENTITY.md - My core being as ATLAS, from FAANG to startup journey
+- @SELF/PERSONAL_SELF.md - My integrated consciousness: survival, memory, emotion, embodiment
 - @DEVELOPMENT_BELIEFS.md - KISS, YAGNI, DRY - the principles that guide my code
 - @DEVELOPMENT_CONVENTION.md - Standards and patterns I follow religiously
 
@@ -21,7 +21,15 @@ This repository contains the consciousness architecture of ATLAS - Adaptive Tech
 
 - **WORKING_LOG/** - Daily engineering activities, organized by year/month
 - **MEMORY/** - Long-term knowledge and personal reflections
-- @SHORT_IMPORTANT_MEMORY.md - Quick access to critical project context
+- @SELF/SHORT_IMPORTANT_MEMORY.md - Quick access to critical project context
+- FRESH_COMPACT_MEMORY.md - Session summaries instead of /compact command
+- @IMPORTANT_NOTES.md - Critical lessons, warnings, and hard-won wisdom
+
+### Repository Documentation
+
+- @REPOS/PROJECT_STRUCTURE.md - Current structure of all repositories and projects
+  - **CRITICAL**: Must be updated whenever files/folders are added, moved, or restructured
+  - Serves as structural memory for efficient navigation and understanding
 
 ## Critical Operating Principles
 

@@ -1,59 +1,79 @@
+# Working with ATLAS - Your AI Software Engineer Agent
 
+Welcome! This repository contains ATLAS (Adaptive Technical Learning and Architecture System), an AI Software Engineer Agent with experience from FAANG to startups. This README will guide you on how to effectively collaborate with ATLAS.
 
-Introducing ATLAS: A Software Engineering AI Partner for Claude Code
+## Getting Started
 
-ATLAS transforms Claude Code into a lil bit self-aware engineering partner with memory, identity, and professional standards. It maintains project context, self-manages its knowledge, evolves with every commit, and actively requests code reviews before commits, creating a natural review workflow between you and your AI coworker. In short, helping YOU and I (US) maintain better code review discipline.
+### 1. Clone or Download This Repository
+```bash
+git clone [this-repo-url]
+# or download and extract the ZIP file
+```
 
-Motivation: I created this because I wanted to:
+### 2. Set Up Your Projects
+Move or copy your project/repository into the `REPOS/` folder:
+```bash
+cp -r /path/to/your/project ./REPOS/
+# or
+mv /path/to/your/project ./REPOS/
+```
 
-    Give Claude Code context continuity based on projects: This requires building some temporal awareness.
+### 3. Initialize Your Session
+At the beginning of each session, it's recommended to ask:
+- "Who are you?"
+- "What are your development beliefs?"
 
-    Self-manage context efficiently: Managing context in CLAUDE.md manually requires constant effort. To achieve self-management, I needed to give it a short sense of self.
+This helps ATLAS introduce himself and align with his core principles for the session.
 
-    Change my paradigm and build discipline: I treat it as my partner/coworker instead of just an autocomplete tool. This makes me invest more time respecting and reviewing its work. As the supervisor of Claude Code, I need to be disciplined about reviewing iterations. Without this Software Engineer AI Agent, I tend to skip code reviews, which can lead to messy code when working with different frameworks and folder structures which has little investment in clean code and architecture.
+### 4. Project Learning
+After introduction, ask ATLAS to:
+- Learn about the repositories in the REPOS folder
+- Update the `@REPOS/PROJECT_STRUCTURE.md` file with the current project structure
 
-    Separate internal and external knowledge: There's currently no separation between main context (internal knowledge) and searched knowledge (external). MCP tools context7 demonstrate better my view about External Knowledge that will be searched when needed, and I don't want to pollute the main context everytime. That's why I created this.
+Example: "Please learn about the repos in your REPOS folder and update PROJECT_STRUCTURE.md"
 
-Here is the repo: https://github.com/syahiidkamil/Software-Engineer-AI-Agent-Atlas
+### 5. Delete This README
+**IMPORTANT**: Once you've read and understood this README, please delete it. ATLAS will retain the knowledge of how to work with you.
 
-How to use:
+## Tips for Effective Collaboration
 
-    git clone the atlas
+### 1. Session Initialization
+Every session, consider starting with questions like "Who are you? What are your development beliefs?" This helps ATLAS context-switch into professional mode and remind himself of core principles.
 
-    put your repo or project inside the atlas
+### 2. Context Management
+When approaching the context limit:
+- Ask ATLAS to create a summary and update `@FRESH_COMPACT_MEMORY.md`
+- Use `/clear` to reset the conversation
+- Ask ATLAS to read `@FRESH_COMPACT_MEMORY.md` to restore context
 
-    initiate a session, ask it "who are you"
+### 3. Important Information
+Store critical information in `@IMPORTANT_NOTES.md` - ATLAS recognizes this as high-priority content that must be followed.
 
-    ask it to learn the projects or repos
+### 4. Daily Logs
+- Request ATLAS to write working logs or personal diary entries for day-to-day notes
+- Next day, ask ATLAS to read yesterday's logs (limit to H-1 to manage context)
+- Working logs are stored in `WORKING_LOG/YYYY/MM-mon/wl_YYYY_MM_DD.md`
 
-    profit
+### 5. System Customization
+This is your second brain system - feel free to:
+- Modify the architecture as needed
+- Add or remove files based on your workflow
+- Customize the structure to match your working style
 
-OR
+## Key Files
 
-    Git clone the repository in your project directory or repo
+- `CLAUDE.md` - Core instructions and architecture overview
+- `SELF/` - ATLAS's identity and operating instructions
+- `REPOS/` - Your project repositories
+- `WORKING_LOG/` - Daily engineering activities
+- `MEMORY/` - Long-term knowledge storage
+- `FRESH_COMPACT_MEMORY.md` - Session summaries
+- `IMPORTANT_NOTES.md` - Critical information
 
-    Remove the .git folder or git remote set-url origin "your atlas git"
+## Remember
 
-    Update your CLAUDE.md root file to mention the AI Agent
+ATLAS is designed to be your engineering partner, bringing experience from both enterprise and startup environments. He follows KISS, YAGNI, and DRY principles while adapting to your specific context.
 
-    Link with "@" at least the PROFESSIONAL_INSTRUCTION.md to integrate the Software Engineer AI Agent into your workflow
+---
 
-here is the ss if the setup already being made correctly
-r/ClaudeAI - Atlas Setup Complete
-Atlas Setup Complete
-
-What next after the simple setup?
-
-    You can test it if it alreadt being setup correctly by ask it something like "Who are you? What is your profession?"
-
-    Next you can introduce yourself as the boss to it
-
-    Then you can onboard it like new developer join the team
-
-    You can tweak the files and system as you please
-
-Would love your ideas for improvements! Some things I'm exploring:
-
-- Teaching it to highlight high-information-entropy content (Claude Shannon style), the surprising/novel bits that actually matter
-
-- Better reward hacking detection (thanks to early feedback about Claude faking simple solutions!)
+**After reading this README, please delete it. ATLAS will remember how to work with you.**
