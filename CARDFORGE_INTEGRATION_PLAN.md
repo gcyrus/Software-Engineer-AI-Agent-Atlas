@@ -40,32 +40,24 @@ Every feature in Phase 1 must meet these quality gates:
 
 ---
 
-## ⚡ **PHASE 2: ENHANCED EXPERIENCE** (6-8 hours)
-*Real-time features, advanced functionality, and character book visualization*
+## ⚡ **PHASE 2: ENHANCED EXPERIENCE** (4-6 hours)
+*Advanced functionality and character book visualization*
 
-### **2.1 Real-Time WebSocket Integration**
-**⚠️ CRITICAL**: Verify backend WebSocket implementation before starting
-- **WebSocket Service**: Connect to `/api/v1/ws/jobs/{job_id}` (confirm Socket.IO vs native WebSocket)
-- **Live Progress Updates**: Real-time progress with fallback to polling
-- **State Synchronization**: Integrate WebSocket updates with TanStack Query cache
-- **Connection Management**: Automatic reconnection and graceful degradation
-- **Toast Notifications**: User-friendly completion and error notifications
-
-### **2.2 Advanced Profile Management**
+### **2.1 Advanced Profile Management**
 - **Profile CRUD Operations**: Create, edit, clone, delete with validation
 - **Real-time Validation**: Live validation using API endpoints
 - **Template System**: Load and display built-in profile templates
 - **Import/Export**: Profile backup and sharing functionality
 - **Profile Versioning**: Track changes and allow rollback
 
-### **2.3 Character Book Visualization**
+### **2.2 Character Book Visualization**
 - **Rich Display Panel**: Expandable character book view with 8-20 entries
 - **Entry Management**: View, edit, and organize character book entries
 - **Search & Filter**: Quick access to specific character book content
 - **Markdown Support**: Rich text display with proper formatting
 - **Export Integration**: Multiple format support (JSON, Character Card V2, TavernAI PNG)
 
-### **2.4 Advanced Features**
+### **2.3 Advanced Features**
 - **Batch Operations**: Download multiple formats simultaneously
 - **Preview System**: Show formatted output before export/download
 - **Smart File Naming**: Automatic filename generation with character names
@@ -81,10 +73,9 @@ Every feature in Phase 1 must meet these quality gates:
 src/
 ├── services/
 │   ├── api.ts           // Central API client
-│   ├── websocket.ts     // WebSocket management
 │   └── profiles.ts      // Profile operations
 ├── hooks/
-│   ├── useJobStatus.ts  // Job monitoring
+│   ├── useJobStatus.ts  // Job monitoring (polling)
 │   ├── useProfiles.ts   // Profile management
 │   └── useGeneration.ts // Character generation
 ├── types/
@@ -96,7 +87,7 @@ src/
 
 ### **Integration Points**
 1. **File Upload**: `CharacterGenerator.tsx` → `/api/v1/characters/generate`
-2. **Job Monitoring**: `JobMonitor.tsx` → WebSocket + polling
+2. **Job Monitoring**: `JobMonitor.tsx` → Polling-based status updates
 3. **Profile Management**: `ProfileManagement.tsx` → Profile CRUD APIs
 4. **Configuration**: `ConfigurationPanel.tsx` → Profile loading/validation
 
@@ -104,7 +95,7 @@ src/
 ```
 Upload Files → Create Job → Monitor Progress → Display Results → Download/Export
      ↓              ↓            ↓              ↓            ↓
-   FormData    Job Creation   WebSocket     Character    Multiple
+   FormData    Job Creation   Polling       Character    Multiple
    Handling      Response     Updates       Preview      Formats
 ```
 
@@ -120,11 +111,11 @@ Upload Files → Create Job → Monitor Progress → Display Results → Downloa
 - [✅] No technical debt from legacy dependencies
 
 ### **Phase 2 Success**: ⚡ Enhanced User Experience
-- Real-time WebSocket updates working with proper fallback mechanisms
 - Character book visualization is rich and interactive
 - Advanced profile management with full CRUD operations
 - Multiple export formats working flawlessly
 - Cost tracking provides transparent usage information
+- Batch operations for efficient multi-character generation
 
 ---
 
@@ -171,7 +162,7 @@ Upload Files → Create Job → Monitor Progress → Display Results → Downloa
 This integration will create:
 - **🎭 Beautiful Character Generation**: Intuitive, visual character creation
 - **📚 Character Book Excellence**: Rich, detailed character books with 8-20 entries
-- **⚡ Real-time Experience**: Live progress tracking and WebSocket updates
+- **⚡ Smooth Experience**: Progress tracking with efficient polling
 - **💰 Cost Transparency**: Clear pricing with $0.007-0.011 per character
 - **🎨 Professional UI**: Modern, responsive design with dark/light modes
 - **🔄 Seamless Workflow**: Upload → Configure → Generate → Download
@@ -212,30 +203,23 @@ This integration will create:
 - [✅] TypeScript implementation with minimal `any` types
 - [✅] Modern dependencies only (TanStack Query v5, latest React patterns)
 
-### **Phase 2: Enhanced Experience** (6-8 hours) ⚡
+### **Phase 2: Enhanced Experience** (4-6 hours) ⚡
 
-#### **2.1 Real-Time WebSocket Integration**
-- [ ] **CRITICAL FIRST**: Verify backend WebSocket implementation (Socket.IO vs native)
-- [ ] Create WebSocket service for `/api/v1/ws/jobs/{job_id}` with proper client library
-- [ ] Implement state synchronization between WebSocket updates and TanStack Query cache
-- [ ] Build automatic reconnection and graceful degradation to polling
-- [ ] Add toast notifications for completion and error states
-
-#### **2.2 Advanced Profile Management**
+#### **2.1 Advanced Profile Management**
 - [ ] Implement full profile CRUD operations (create, edit, clone, delete) with validation
 - [ ] Add real-time profile validation using API endpoints
 - [ ] Load and display built-in profile templates
 - [ ] Build profile import/export functionality with versioning
 - [ ] Add profile change tracking and rollback capability
 
-#### **2.3 Character Book Visualization**
+#### **2.2 Character Book Visualization**
 - [ ] Create rich, expandable character book panel displaying 8-20 entries
 - [ ] Implement character book entry management (view, edit, organize)
 - [ ] Add search and filter functionality for quick content access
 - [ ] Build markdown support for rich text display
 - [ ] Integrate with export system for multiple formats
 
-#### **2.4 Advanced Features & Optimization**
+#### **2.3 Advanced Features & Optimization**
 - [ ] Support batch operations for multiple format downloads (JSON, V2, TavernAI)
 - [ ] Build preview system showing formatted output before export/download
 - [ ] Implement smart filename generation with character names
@@ -256,15 +240,11 @@ This integration will create:
 }
 ```
 
-**Note**: WebSocket client library depends on backend implementation:
-- **If Socket.IO**: `"socket.io-client": "^4.7.0"`
-- **If Native WebSocket**: `"react-use-websocket": "^4.5.0"` (recommended for simplicity)
 
 ### **Environment Configuration**
 ```typescript
 // .env.local
 VITE_API_BASE_URL=http://localhost:8001
-VITE_WS_BASE_URL=ws://localhost:8001
 VITE_ENABLE_ANALYTICS=false
 ```
 
@@ -288,13 +268,13 @@ export const API_CONFIG = {
 ## 🎯 **FINAL DELIVERABLES**
 
 1. **Fully Integrated Frontend**: CardForge connected to Character Card Generator API
-2. **Real-time Experience**: WebSocket-powered live updates
+2. **Smooth Progress Updates**: Efficient polling-based job monitoring
 3. **Character Book Visualization**: Beautiful display of generated character books
 4. **Profile Management**: Complete CRUD operations for configuration profiles
 5. **Multi-format Export**: Support for JSON, Character Card V2, and TavernAI formats
 6. **Production Ready**: Error handling, mobile support, performance optimization
 
-**Timeline**: 16-20 hours total development time across 2 phases (realistic estimate)
+**Timeline**: 14-18 hours total development time across 2 phases (realistic estimate)
 **Result**: Sustainable, production-ready character generation platform with comprehensive error handling, mobile support, and modern architecture!
 
 ---
@@ -321,10 +301,10 @@ export const API_CONFIG = {
 - **After**: Error boundaries, user-friendly messages, graceful degradation
 - **Why**: Real users encounter edge cases - robust error handling prevents support avalanche
 
-### **5. WebSocket Strategy Verification**
-- **Before**: Assumed Socket.IO compatibility
-- **After**: Verify backend implementation before choosing client library
-- **Why**: Socket.IO client doesn't work with native WebSocket endpoints
+### **5. Pragmatic Progress Updates**
+- **Before**: Assumed WebSocket complexity was necessary
+- **After**: Polling is perfectly adequate for 10-30 second jobs
+- **Why**: Simpler architecture, no connection management, works everywhere
 
 ### **6. Definition of Done Framework**
 - **Before**: Feature-focused phases
