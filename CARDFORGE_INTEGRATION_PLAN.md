@@ -45,24 +45,44 @@ Every feature in Phase 1 must meet these quality gates:
 
 ### **2.1 Advanced Profile Management**
 - **Profile CRUD Operations**: Create, edit, clone, delete with validation
-- **Real-time Validation**: Live validation using API endpoints
-- **Template System**: Load and display built-in profile templates
-- **Import/Export**: Profile backup and sharing functionality
-- **Profile Versioning**: Track changes and allow rollback
+- **Real-time Validation**: Debounced validation (500ms) using `/api/v2/validate/profile` endpoint
+- **Template System**: Load and display built-in profile templates from API
+- **Import/Export**: Profile backup and sharing functionality with JSON format
+- **Profile Versioning**: ETag-based optimistic locking with conflict resolution UI
 
 ### **2.2 Character Book Visualization**
-- **Rich Display Panel**: Expandable character book view with 8-20 entries
-- **Entry Management**: View, edit, and organize character book entries
-- **Search & Filter**: Quick access to specific character book content
-- **Markdown Support**: Rich text display with proper formatting
+- **Rich Display Panel**: Grid layout displaying 8-20 CharacterBookEntry objects
+- **Entry Management**: CRUD operations via `/api/v2/character-books/{id}/entries` endpoints
+- **Search & Filter**: Client-side filtering by name, content, keywords, and category
+- **Markdown Support**: Rich text display with react-markdown rendering
 - **Export Integration**: Multiple format support (JSON, Character Card V2, TavernAI PNG)
 
 ### **2.3 Advanced Features**
-- **Batch Operations**: Download multiple formats simultaneously
-- **Preview System**: Show formatted output before export/download
-- **Smart File Naming**: Automatic filename generation with character names
-- **Cost Tracking**: Live token usage and cost estimates with transparency
-- **Performance Optimization**: Lazy loading, caching, and bundle optimization
+- **Batch Operations**: Async job processing via `/api/v2/batch-generations` with polling-based status updates
+- **Preview System**: Show formatted output before export/download with syntax highlighting
+- **Smart File Naming**: Template-based patterns like `{character_name}_{timestamp}.{format}`
+- **Cost Tracking**: Real-time usage via `/api/v2/user/usage` with per-model breakdown
+- **Performance Optimization**: React.lazy() for code splitting, TanStack Query caching with 5min stale time
+
+---
+
+## 📋 **PHASE 2 TECHNICAL SPECIFICATIONS**
+
+### **API Contracts & Implementation Details**
+For complete technical specifications including:
+- Detailed API endpoint contracts with request/response examples
+- Frontend implementation patterns and code samples
+- Data models and TypeScript interfaces
+- Error handling and edge case scenarios
+
+**See: [PHASE_2_DETAILED_SPECIFICATIONS.md](./PHASE_2_DETAILED_SPECIFICATIONS.md)**
+
+### **Key Technical Decisions**
+1. **Batch Processing**: Polling-based status updates (no WebSockets needed for 10-30s jobs)
+2. **Profile Versioning**: Server-side with ETag headers for optimistic locking
+3. **Validation**: Hybrid approach - instant client-side + debounced server-side
+4. **Character Books**: Structured data model with client-side search/filter
+5. **Cost Tracking**: Real-time API with 30-second refresh interval
 
 ---
 
@@ -206,25 +226,25 @@ This integration will create:
 ### **Phase 2: Enhanced Experience** (4-6 hours) ⚡
 
 #### **2.1 Advanced Profile Management**
-- [ ] Implement full profile CRUD operations (create, edit, clone, delete) with validation
-- [ ] Add real-time profile validation using API endpoints
-- [ ] Load and display built-in profile templates
-- [ ] Build profile import/export functionality with versioning
-- [ ] Add profile change tracking and rollback capability
+- [ ] Implement profile CRUD with `/api/v2/profiles` endpoints and ETag versioning
+- [ ] Add debounced validation (500ms) via `POST /api/v2/validate/profile`
+- [ ] Load built-in templates from `GET /api/v2/profiles/templates`
+- [ ] Build import/export with JSON format and version metadata
+- [ ] Create conflict resolution UI for concurrent edit scenarios (412 status handling)
 
 #### **2.2 Character Book Visualization**
-- [ ] Create rich, expandable character book panel displaying 8-20 entries
-- [ ] Implement character book entry management (view, edit, organize)
-- [ ] Add search and filter functionality for quick content access
-- [ ] Build markdown support for rich text display
-- [ ] Integrate with export system for multiple formats
+- [ ] Create grid layout for CharacterBookEntry objects with metadata display
+- [ ] Implement CRUD via `/api/v2/character-books/{id}/entries` endpoints
+- [ ] Add client-side search/filter by name, content, keywords, category
+- [ ] Integrate react-markdown for rich text with syntax highlighting
+- [ ] Connect to existing export system for JSON/V2/TavernAI formats
 
 #### **2.3 Advanced Features & Optimization**
-- [ ] Support batch operations for multiple format downloads (JSON, V2, TavernAI)
-- [ ] Build preview system showing formatted output before export/download
-- [ ] Implement smart filename generation with character names
-- [ ] Add transparent cost tracking with live token usage estimates
-- [ ] Optimize performance with lazy loading, caching, and bundle optimization
+- [ ] Implement batch API via `POST /api/v2/batch-generations` with polling
+- [ ] Build preview modal with syntax-highlighted JSON/YAML display
+- [ ] Add filename templates: `{character_name}_{timestamp}.{format}`
+- [ ] Create cost tracker component using `/api/v2/user/usage` (30s refresh)
+- [ ] Add React.lazy() imports and configure TanStack Query cache (5min stale)
 
 ---
 
