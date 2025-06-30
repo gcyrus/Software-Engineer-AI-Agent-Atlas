@@ -1,0 +1,22 @@
+{
+  "id": "retry-logic",
+  "started": "2025-06-28T20:39:00Z",
+  "lastUpdated": "2025-06-28T20:55:00Z",
+  "status": "active",
+  "phase": "complete",
+  "progress": {
+    "discovery": { "answered": 5, "total": 5 },
+    "detail": { "answered": 5, "total": 5 }
+  },
+  "contextFiles": [
+    "/REPOS/character-card-generator-api/card_generator_app/processing/character_book_updater.py",
+    "/REPOS/character-card-generator-api/card_generator_app/providers/openrouter.py",
+    "/REPOS/character-card-generator-api/card_generator_app/utils/error_handler.py",
+    "/REPOS/character-card-generator-api/card_generator_app/providers/simple_router.py"
+  ],
+  "relatedFeatures": [
+    "Job retry API endpoint",
+    "Synchronous robust_operation",
+    "Fallback entry generation"
+  ]
+}

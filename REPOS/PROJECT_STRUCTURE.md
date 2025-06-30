@@ -11,56 +11,143 @@ This document maintains the structural memory of all repositories and projects. 
 cardforge-ai-studio/
 ├── src/
 │   ├── components/         # Reusable UI components
-│   │   ├── ui/            # shadcn/ui components (button, dialog, etc.)
+│   │   ├── ui/            # shadcn/ui components (complete collection)
 │   │   ├── CharacterCardDisplay.tsx
 │   │   ├── ConfigurationPanel.tsx
+│   │   ├── ConfigurationProfileForm.tsx
+│   │   ├── DownloadButton.tsx
+│   │   ├── EnhancedCharacterGenerator.tsx
+│   │   ├── EnhancedConfigurationPanel.tsx
 │   │   ├── EnhancedFileUpload.tsx
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── FileUploadZone.tsx
+│   │   ├── Header.tsx
+│   │   ├── JobDetailsDialog.tsx
+│   │   ├── JobHistoryCards.tsx
+│   │   ├── JobHistoryEmpty.tsx
+│   │   ├── JobHistoryFilters.tsx
+│   │   ├── JobHistoryHeader.tsx
+│   │   ├── JobHistoryList.tsx
+│   │   ├── JobHistoryPagination.tsx
+│   │   ├── JobHistorySkeleton.tsx
+│   │   ├── JobHistoryTable.tsx
 │   │   ├── JobMonitor.tsx
-│   │   └── ProfileFormDialog.tsx
+│   │   ├── JobMonitorCard.tsx
+│   │   ├── JobResultDisplay.tsx
+│   │   ├── JobResultModal.tsx
+│   │   ├── MainContent.tsx
+│   │   ├── MobileCharacterGenerator.tsx
+│   │   ├── PreviewPanel.tsx
+│   │   ├── ProfileConflictDialog.tsx
+│   │   ├── ProfileFormDialog.tsx
+│   │   ├── PromptProfileForm.tsx
+│   │   ├── QueryErrorBoundary.tsx
+│   │   ├── ResponsiveCharacterGenerator.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── skeletons/
+│   │   │   └── CharacterCardSkeleton.tsx
+│   │   └── test/
+│   │       └── ComponentTest.tsx
 │   ├── config/            # Application configuration
-│   │   └── api.config.ts  # API endpoints and settings
+│   │   ├── api.config.ts  # API endpoints and settings
+│   │   └── index.ts
 │   ├── hooks/             # Custom React hooks
 │   │   ├── use-api.ts
-│   │   └── use-toast.ts
+│   │   ├── use-mobile.tsx
+│   │   ├── use-toast.ts
+│   │   ├── useActiveJobPolling.ts
+│   │   ├── useCharacterGenerator.ts
+│   │   ├── useJobActions.ts
+│   │   ├── useJobHistory.ts
+│   │   ├── useJobUtils.ts
+│   │   ├── useProfileManagement.ts
+│   │   └── index.ts
+│   ├── lib/               # Utility libraries
+│   │   ├── query-client.ts
+│   │   └── utils.ts
+│   ├── pages/             # Route-level pages
+│   │   ├── Index.tsx
+│   │   └── NotFound.tsx
 │   ├── services/          # API client services
 │   │   ├── api.ts         # Main API service
-│   │   └── websocket.ts   # WebSocket client
+│   │   ├── websocket.ts   # WebSocket client
+│   │   ├── api.example.tsx
+│   │   ├── README.md
+│   │   └── index.ts
 │   ├── types/             # TypeScript type definitions
-│   │   └── api.ts         # API response/request types
+│   │   ├── api.ts         # API response/request types
+│   │   └── index.ts
+│   ├── utils/             # Utility functions
+│   │   └── download.ts
 │   ├── views/             # Main view components
 │   │   ├── CharacterGenerator.tsx
+│   │   ├── HelpSupport.tsx
 │   │   ├── JobHistory.tsx
 │   │   └── ProfileManagement.tsx
 │   ├── App.tsx            # Main application component
-│   └── main.tsx           # Application entry point
+│   ├── App.css
+│   ├── index.css
+│   ├── main.tsx           # Application entry point
+│   └── vite-env.d.ts
+├── e2e/                   # Playwright E2E tests
+│   ├── fixtures/
+│   ├── pages/
+│   ├── tests/
+│   ├── utils/
+│   └── README.md
 ├── public/                # Static assets
+├── dist/                  # Build output
+├── test-results/          # Test results
+├── playwright-report/     # Playwright test reports
 ├── package.json           # Node.js dependencies
+├── bun.lockb             # Bun lock file
 ├── vite.config.ts        # Vite configuration
 ├── tailwind.config.ts    # Tailwind CSS configuration
-└── tsconfig.json         # TypeScript configuration
+├── tsconfig.json         # TypeScript configuration
+├── playwright.config.ts  # Playwright test configuration
+├── eslint.config.js      # ESLint configuration
+├── postcss.config.js     # PostCSS configuration
+├── components.json       # shadcn/ui configuration
+└── .mcp.json             # MCP server configuration (Playwright)
 ```
 
 **Key Technologies:**
 - **Framework**: React 18 with TypeScript
 - **Build Tool**: Vite
-- **UI Library**: shadcn/ui + Radix UI primitives
+- **Package Manager**: Bun (with npm fallback)
+- **UI Library**: shadcn/ui + Radix UI primitives (complete collection)
 - **Styling**: Tailwind CSS
-- **State Management**: React Query (TanStack Query)
+- **State Management**: TanStack Query v5 (React Query)
 - **HTTP Client**: Axios
 - **Form Handling**: React Hook Form + Zod validation
 - **File Upload**: react-dropzone
+- **Testing**: Playwright E2E tests
+- **Router**: React Router DOM v6
 
 **Key Configuration:**
-- API URL: `http://localhost:8001` (configurable via `VITE_API_URL`)
+- API URL: `http://localhost:8000` (corrected from 8001, configurable via `VITE_API_URL`)
 - API Version: `/api/v2` (configurable via `VITE_API_VER`)
+- WebSocket: `ws://localhost:8000/ws`
 
 **Important Files:**
 - `src/config/api.config.ts` - Centralized API configuration
 - `src/services/api.ts` - API client implementation
 - `src/services/websocket.ts` - WebSocket connection management
 - `src/types/api.ts` - TypeScript interfaces for API
+- `e2e/` - Complete Playwright test suite for all features
+- `.env.local` - Environment configuration (corrected API port)
+- `.mcp.json` - MCP server configuration (Playwright browser automation)
 
-**Last Updated:** 2025-06-19
+**Latest Status (2025-06-21):** ✅ PRODUCTION READY
+- Phase 1.2: Robust file upload & job processing complete
+- Job History feature fully implemented and tested
+- Complete API integration with v2 endpoints
+- E2E test coverage with Playwright
+- Mobile-responsive design
+
+**MCP Integration:** Playwright (locally configured) + Context7 & Zen (globally available)
+
+**Last Updated:** 2025-06-28
 
 ---
 
@@ -149,4 +236,10 @@ character-card-generator-api/
 - `alembic.ini` - Migration configuration (NEW)
 - `pyproject.toml` - Python project configuration
 
-**Last Updated:** 2025-06-19
+**Next Feature (2025-06-28):** Retry Logic for Character Book Updater
+- Async retry mechanism with exponential backoff
+- Configurable retry attempts and delays
+- Enhanced error handling for OpenRouter API calls
+- Integration with existing fallback behavior
+
+**Last Updated:** 2025-06-28

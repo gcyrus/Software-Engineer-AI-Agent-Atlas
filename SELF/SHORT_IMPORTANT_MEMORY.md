@@ -61,71 +61,71 @@ This file should capture **non-obvious, surprising information** that you'll nee
 - **v2 API Features**: Complete CLI parity (54+ options), enhanced validation, service layer architecture
 - **v2 Key Services**: CLIConfigMapper (option mapping), JobService (background processing), GenerationService (coordination)
 
-## Latest Session Notes (2025-06-19) - ASYNC ARCHITECTURE COMPLETE ✅
+## Latest Session Notes (2025-06-28) - SYSTEM STATUS UPDATE ✅
 
-### CRITICAL FIX: Full Async Conversion Successfully Implemented
-- **ROOT ISSUE**: Fixed "asyncio.run() cannot be called from a running event loop" error
-- **APPROACH**: Complete async architecture migration throughout service layer  
-- **DECISION**: Abandoned sync interface backward compatibility for clean design
+### Current Project Status - PRODUCTION READY SYSTEMS
+**CardForge AI Studio Frontend**: ✅ PRODUCTION READY (since 2025-06-21)
+- Phase 1.2 implementation complete with robust file upload & job processing
+- Complete job history feature with real-time updates
+- Full API integration with v2 endpoints verified
+- Playwright E2E test coverage implemented
+- Mobile-responsive design tested and working
+- Environment configuration corrected (API port 8000)
 
-### Critical Fixes Applied
-1. **Database JobService**: Removed all `asyncio.run()` calls, direct async operations
-2. **Route Handlers**: Fixed syntax errors and missing `await` statements  
-3. **Background Worker**: Fixed job failure handling to prevent crashes
-4. **Performance**: Fixed list_jobs to use proper database pagination instead of in-memory
-5. **Code Quality**: Removed pip artifacts, updated gitignore
+**Character Card Generator API**: ✅ PRODUCTION READY with Database Backend
+- Complete async architecture with database integration
+- Full v2 API with CLI feature parity (54+ options)
+- Database-backed job service with factory pattern
+- Zero-downtime deployment capability via environment variables
+- Comprehensive job management endpoints (9 total)
+- Real-time WebSocket updates for job progress
 
-### Architecture Validation - CORRECTED zen:precommit Analysis
-- **In-Memory Service**: `threading.Lock()` CORRECT for sync internals (not asyncio.Lock)
-- **Database Service**: Full async for I/O operations
-- **Hybrid Design**: Async interface + appropriate internal implementation  
-- **Factory Pattern**: Seamless switching between implementations
+### Next Development Priority (2025-06-28)
+**Retry Logic for Character Book Updater** - Requirements Specification Complete
+- Async retry mechanism with configurable exponential backoff
+- Enhanced error handling for OpenRouter API transient failures
+- Integration with existing fallback behavior
+- Configuration via `retry_config` in config files
+- Target: Improve character book quality by handling temporary API issues
 
-### Production Status
-✅ **Both Modes Working**: In-memory and database backends fully functional  
-✅ **Performance Optimized**: Proper pagination eliminates database inefficiencies  
-✅ **Error Handling**: Background worker stable with async job operations  
-✅ **Clean Architecture**: Consistent async/await patterns throughout  
+### Integration Status Summary
+✅ **Frontend-Backend Integration**: Complete and tested
+✅ **Database Migration**: Fully implemented with Alembic
+✅ **Job Processing**: Async architecture with proper error handling
+✅ **API Endpoints**: Complete v2 API with CLI parity
+✅ **WebSocket Support**: Real-time updates working
+✅ **Testing Coverage**: E2E tests with Playwright
+✅ **Mobile Support**: Responsive design verified
+✅ **Production Features**: Rate limiting, error boundaries, monitoring
 
-**DEPLOYMENT READY**: Complete async architecture with database integration
+### Architecture Highlights
+- **Dual Profile System**: Config profiles (API settings) + Prompt profiles (generation instructions)
+- **Factory Pattern**: Seamless switching between in-memory and database job services
+- **Async Processing**: Complete async/await architecture throughout
+- **Error Resilience**: Multi-layer error handling with graceful degradation
+- **Scalability**: Database-as-queue pattern supports multi-worker deployment
 
-### Earlier: Database Migration Complete ✅
-- **MAJOR MILESTONE**: Complete database implementation from DATABASE_IMPLEMENTATION_PLAN.md
-- **PHASE 1-4**: All phases completed - Infrastructure, Services, Integration, Migration
-- **NEW ARCHITECTURE**: Database-backed JobService with factory pattern for seamless migration
-- **DEPLOYMENT**: Zero-downtime deployment via `USE_DATABASE_JOBS=true` environment variable
-- **SCALABILITY**: Multi-worker support, atomic job operations, database-as-queue pattern
-- **MIGRATION**: Alembic setup with initial migration for Job and JobLog tables
-- **PRODUCTION FEATURES**: Connection pooling, zombie job cleanup, comprehensive logging
+### Recent Session (2025-06-21) - Job History Implementation Complete ✅
+- **CRITICAL FIX**: Environment configuration corrected (port 8000 vs 8001)
+- **PAGINATION**: Fixed frontend hooks to use offset/limit instead of page-based pagination
+- **API INTEGRATION**: Complete end-to-end functionality verified
+- **TESTING**: Real browser testing with Playwright confirmed working
+- **PRODUCTION STATUS**: Job History feature ready for production deployment
 
-### Database Implementation Highlights
-- **DatabaseJobService**: Drop-in replacement maintaining exact API compatibility
-- **JobWorker**: Background worker with database-as-queue processing
-- **Factory Pattern**: `job_service_factory.py` enables gradual rollout
-- **Session Management**: Async SQLAlchemy 2.0 with proper connection pooling
-- **Atomic Operations**: Thread-safe job state changes with proper locking
-- **Zombie Recovery**: Automatic cleanup of interrupted jobs on application restart
+### Earlier Sessions Summary
+**2025-06-19**: Complete async architecture conversion with database integration
+**2025-06-18**: All 8 v2 API job management endpoints implemented
+**Phase History**: Database migration → Async conversion → Job endpoints → Frontend integration → Testing
 
-### Previous Session (2025-06-18) - Jobs.py Enhancement ✅
-- **MILESTONE**: Successfully completed ALL 8 jobs.py TODOs using parallel agents with git worktrees
-- **PHASE 1**: Job cancellation, result retrieval, enhanced details (3 TODOs) - STABILIZED  
-- **PHASE 2**: Job deletion, retry mechanism, logging, file downloads, export (5 TODOs) - COMPLETED
-- **ARCHITECTURE**: Added FormatConverter & JobExporter utility classes for production features
-- **THREADING**: Implemented atomic operations with threading.Lock for race condition prevention
-- **QUALITY**: Applied "Stabilize, then Advance" methodology with Zen MCP code review integration
+**DEPLOYMENT STATUS**: ✅ BOTH SYSTEMS PRODUCTION READY - Ready for user testing and deployment
 
-### Complete v2 API Job Management Endpoints
-1. `GET /api/v2/jobs` - List all jobs with filtering (NOW WITH PROPER PAGINATION)
-2. `GET /api/v2/jobs/{job_id}` - Enhanced job details with comprehensive information
-3. `POST /api/v2/jobs/{job_id}/cancel` - Atomic job cancellation with proper error handling
-4. `GET /api/v2/jobs/{job_id}/result` - Job result retrieval with validation
-5. `DELETE /api/v2/jobs/{job_id}` - Job deletion with terminal state validation
-6. `POST /api/v2/jobs/{job_id}/retry` - Job retry mechanism with configuration cloning
-7. `GET /api/v2/jobs/{job_id}/logs` - Real-time job logging with timestamped entries
-8. `GET /api/v2/jobs/{job_id}/download/{format}` - File downloads (JSON, v2, TavernAI formats)
-9. `GET /api/v2/jobs/{job_id}/export` - Comprehensive export (JSON, YAML, CSV with debug data)
+## Available MCP Servers
+- **Playwright**: ✅ Locally configured - Browser automation, testing, screenshots
+- **Context7**: ✅ Globally available - Real-time documentation, API references, best practices
+- **Zen**: ✅ Globally available - Enhanced reasoning, systematic workflows, multi-model consensus
 
-**STATUS**: ✅ ASYNC ARCHITECTURE + DATABASE + JOB MANAGEMENT COMPLETE - Production-ready system!
+**Key Zen Commands**: `thinkdeep`, `debug`, `codereview`, `planner`, `consensus`, `precommit`
+**Integration Pattern**: Zen planning → Context7 research → Implementation → Zen review → Playwright testing
 
 ## Critical Execution Notes
 - **⚠️ VIRTUAL ENVIRONMENT**: ALWAYS run `source .venv/bin/activate` before ANY Python commands in character-card-generator-api
@@ -135,4 +135,4 @@ This file should capture **non-obvious, surprising information** that you'll nee
 Before adding info here, ask: "Would a competent engineer be surprised by this?"
 
 ---
-*Last Updated: 2025-06-19*
+*Last Updated: 2025-06-28*
